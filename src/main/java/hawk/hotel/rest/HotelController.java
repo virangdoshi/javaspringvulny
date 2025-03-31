@@ -4,6 +4,7 @@ import hawk.hotel.domain.Continent;
 import hawk.hotel.domain.Hotel;
 import hawk.hotel.exception.DataFormatException;
 import hawk.hotel.service.HotelService;
+import io.github.pixee.security.Newlines;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class HotelController extends AbstractRestHandler {
     public void createHotel(@RequestBody Hotel hotel,
                             HttpServletRequest request, HttpServletResponse response) {
         Hotel createdHotel = this.hotelService.createHotel(hotel);
-        response.setHeader("Location", request.getRequestURL().append("/").append(createdHotel.getId()).toString());
+        response.setHeader("Location", Newlines.stripAll(request.getRequestURL().append("/").append(createdHotel.getId()).toString()));
     }
 
     @RequestMapping(value = "",
