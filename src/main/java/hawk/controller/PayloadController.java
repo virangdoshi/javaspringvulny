@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.security.SecureRandom;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,7 +37,7 @@ public class PayloadController {
 
     public void sleepy() {
         if ((payloadDelayStart > 0 || payloadDelayEnd > 0) && payloadDelayEnd > payloadDelayStart) {
-            Random random = new Random();
+            Random random = new SecureRandom();
             Long sleepFor = random.nextLong(payloadDelayStart, payloadDelayEnd);
             try {
                 Thread.sleep(sleepFor);
